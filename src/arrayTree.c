@@ -28,7 +28,7 @@ void destroy(arrayTree* tree) {
 // Insert the value in the tree. If it is already there, do nothing
 void insert(arrayTree* tree, char* pal) {
     if(pal != NULL) {
-        int pos = tolower(*pal)-97;
+        int pos = tolower(*pal)-'a';
         if(*tree == NULL) {
             create(tree);
         }
@@ -59,7 +59,7 @@ void saveOnTree(arrayTree* tree, FILE* f) {
 // case without taking into account capital or non capital letters
 void wordInTree(arrayTree tree, char* letter, int* itIs) {
     if(letter != NULL && tree != NULL) {
-        int pos = tolower(*letter)-97;
+        int pos = tolower(*letter)-'a';
         if(tree->nodes[pos].found == 0) {
             *itIs = 0;
             return;
@@ -70,6 +70,9 @@ void wordInTree(arrayTree tree, char* letter, int* itIs) {
         else {
             wordInTree(tree->nodes[pos].next, letter, itIs);
         }
+    }
+    else {
+        *itIs = 0;
     }
 }
 
