@@ -31,7 +31,9 @@ void insert(arrayTree* tree, char* pal) {
         if(*tree == NULL) {
             create(tree);
         }
-        create(&((*tree)->nodes[pos].next));
+        if((*tree)->nodes[pos].next == NULL) {
+            create(&((*tree)->nodes[pos].next));
+        }
         if(*(++pal) == 0) {
             (*tree)->nodes[pos].isEnd = 1;
         }
