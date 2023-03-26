@@ -64,7 +64,7 @@ void wordInTree(arrayTree tree, char* letter, int* itIs) {
             *itIs = 0;
             return;
         }
-        if(*(++letter) == 0 && tree->nodes[pos].found == 1 && tree->nodes[pos].isEnd == 1) {
+        if(*(++letter) == 0 && tree->nodes[pos].isEnd == 1) {
             *itIs = 1;
         }
         else {
@@ -76,21 +76,22 @@ void wordInTree(arrayTree tree, char* letter, int* itIs) {
     }
 }
 
-void longestWordAux(arrayTree tree, char letters[], char** longest_word, char** one_solution) {
+void longestWordAux(arrayTree tree, char letters[], char** longest_word, char** one_solution, int* word_ended) {
     int actual_length = strlen(*one_solution);
-    if(strlen(*one_solution) > strlen(*longest_word)) {
+    if(strlen(*one_solution) > strlen(*longest_word) && *word_ended == 1) {
         *longest_word = realloc(*longest_word, actual_length+2);
         strcpy(*longest_word, *one_solution);
     }
     for(int i = 0; i < strlen(letters); ++i) {
         int pos = tolower(letters[i])-'a';
         if(tree != NULL && tree->nodes[pos].found == 1) {
+            *word_ended = tree->nodes[pos].isEnd;
             char* aux = malloc(actual_length+1);
             strcpy(aux, *one_solution);
             *one_solution = realloc(*one_solution,actual_length+2);
             (*one_solution)[actual_length] = letters[i];
             (*one_solution)[actual_length+1] = '\0';
-            longestWordAux(tree->nodes[pos].next, letters, longest_word, one_solution);
+            longestWordAux(tree->nodes[pos].next, letters, longest_word, one_solution, word_ended);
             *one_solution = realloc(*one_solution, actual_length+1);
             strcpy(*one_solution, aux);
         }
@@ -106,9 +107,9 @@ char* longestWord(arrayTree tree, char letters[]) {
     strcpy(res, "");
     char* aux = malloc(0);
     strcpy(aux, "");
-    longestWordAux(tree, letters, &res, &aux);
+    int word_ended = 0;
+    longestWordAux(tree, letters, &res, &aux, &word_ended);
     return res;
 }
-
 
 
