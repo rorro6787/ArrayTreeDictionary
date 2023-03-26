@@ -10,7 +10,6 @@ typedef struct arrayNode* arrayTree;
 
 struct TNode {
     int isEnd;
-    int found;
     arrayTree next;
 };
 
