@@ -1,5 +1,6 @@
 #ifndef BST_H_
 #define BST_H_
+#define NUM_NODOS 26
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -14,7 +15,7 @@ struct TNode {
 };
 
 struct arrayNode {
-    struct TNode nodes[26];
+    struct TNode nodes[NUM_NODOS];
 };
 
 // Create an empty tree
