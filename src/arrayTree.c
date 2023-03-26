@@ -7,7 +7,7 @@
 // Create an empty tree
 void create(arrayTree* tree) {
     (*tree) = (arrayTree) malloc(sizeof(struct arrayNode));
-    for(int i = 0; i < 26; ++i) {
+    for(int i = 0; i < NUM_NODOS; ++i) {
         (*tree)->nodes[i].next = NULL;
         (*tree)->nodes[i].isEnd = 0;
         (*tree)->nodes[i].found = 0;
@@ -17,7 +17,7 @@ void create(arrayTree* tree) {
 // destroy the tree and free all memory
 void destroy(arrayTree* tree) {
     if((*tree) != NULL) {
-        for (int i = 0; i < 26; ++i) {
+        for (int i = 0; i < NUM_NODOS; ++i) {
             destroy(&((*tree)->nodes[i].next));
         }
         free((*tree));
