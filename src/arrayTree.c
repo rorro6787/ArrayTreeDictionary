@@ -10,7 +10,6 @@ void create(arrayTree* tree) {
     for(int i = 0; i < NUM_NODOS; ++i) {
         (*tree)->nodes[i].next = NULL;
         (*tree)->nodes[i].isEnd = 0;
-        (*tree)->nodes[i].found = 0;
     }
 }
 
@@ -32,7 +31,7 @@ void insert(arrayTree* tree, char* pal) {
         if(*tree == NULL) {
             create(tree);
         }
-        (*tree)->nodes[pos].found = 1;
+        create(&((*tree)->nodes[pos].next));
         if(*(++pal) == 0) {
             (*tree)->nodes[pos].isEnd = 1;
         }
@@ -60,7 +59,7 @@ void saveOnTree(arrayTree* tree, FILE* f) {
 void wordInTree(arrayTree tree, char* letter, int* itIs) {
     if(letter != NULL && tree != NULL) {
         int pos = tolower(*letter)-'a';
-        if(tree->nodes[pos].found == 0) {
+        if(tree->nodes[pos].next == NULL) {
             *itIs = 0;
             return;
         }
@@ -84,7 +83,7 @@ void longestWordAux(arrayTree tree, char letters[], char** longest_word, char** 
     }
     for(int i = 0; i < strlen(letters); ++i) {
         int pos = tolower(letters[i])-'a';
-        if(tree != NULL && tree->nodes[pos].found == 1) {
+        if(tree != NULL && tree->nodes[pos].next != NULL) {
             *word_ended = tree->nodes[pos].isEnd;
             char* aux = malloc(actual_length+1);
             strcpy(aux, *one_solution);
