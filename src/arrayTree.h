@@ -33,4 +33,8 @@ void saveOnTree(arrayTree* tree, FILE* f);
 // case without taking into account capital or non capital letters
 void wordInTree(arrayTree tree, char* letter, int* itIs);
 
+// Returns the longest word stored in the tree that can be formed
+// by any permutation of the letters in 'letters'
+char* longestWord(arrayTree tree, char letters[]);
+
 #endif /* BST_H_ */
