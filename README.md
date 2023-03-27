@@ -14,3 +14,11 @@ This way is really easy to decide if a word is stored or not in the structure. Y
 ## Longest Word Searching Algorithm
 Using this Structure is very easy to create an algorithm that in any other structure would have an inimagible computation cost, but in this case with a more afordable cost. Basically, what this backtracking algorithm would do is: given an array of letters, return the longest string that can be formed doing any type of permutations to the original string and that it that is already inserted in the tree.
 For example, if the tree had these words inserted -> [layer lan lies alies] and we are given the next set of letters -> "lseias", the algorithm should return the string "alies". In the source code the algorithm appears with the name of longestWord.
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+## Technology Used
+- C
+
+## Team
+- Emilio Rodrigo Carreira Villalta
